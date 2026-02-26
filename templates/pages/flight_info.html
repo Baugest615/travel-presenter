@@ -1,0 +1,44 @@
+{# 航班資訊頁 — 左文右圖 #}
+<div class="slide">
+  <div class="slide-inner">
+    <div class="split-left">
+      {% include "components/badge.html" %}
+      <div class="section-label">Flight details</div>
+      <div class="page-title">航班資訊</div>
+      <div class="page-title-en">{{ trip.flights[0].departure_city or 'Taipei' }} — {{ trip.flights[0].arrival_city or trip.destination }}</div>
+
+      {% for flight in trip.flights %}
+      <div class="flight-block">
+        <div class="flight-label">{{ flight.date }}　{{ '去程' if flight.direction == 'departure' else '回程' }}</div>
+        <div class="flight-codes">
+          <span class="flight-code">{{ flight.departure_airport }}</span>
+          <span class="flight-dash">—</span>
+          <span class="flight-code">{{ flight.arrival_airport }}</span>
+        </div>
+        <div class="flight-time">
+          <span>{{ flight.departure_time | replace(':', ' : ') }}</span>
+          <span>{{ flight.arrival_time | replace(':', ' : ') }}</span>
+        </div>
+      </div>
+      {% endfor %}
+
+      <dl class="info-grid">
+        <dt>航空公司</dt><dd>{{ trip.flights[0].airline }}</dd>
+        <dt>去程航班</dt><dd>{{ trip.flights[0].flight_number }}</dd>
+        {% if trip.flights|length > 1 %}
+        <dt>回程航班</dt><dd>{{ trip.flights[1].flight_number }}</dd>
+        {% endif %}
+        {% if trip.meeting_point %}
+        <dt>集合時間</dt><dd>{{ trip.meeting_point.time }}</dd>
+        <dt>集合地點</dt><dd>{{ trip.meeting_point.location }}</dd>
+        {% endif %}
+      </dl>
+    </div>
+    <div class="split-right">
+      {% if flight_image %}
+      <img src="{{ flight_image }}" alt="{{ trip.destination }}">
+      {% endif %}
+    </div>
+    <span class="page-num">{{ page_num }}</span>
+  </div>
+</div>

@@ -1,0 +1,312 @@
+/* ========== Dark Modern 深色現代風主題 ========== */
+/* 設計語言：深藍黑底、金色強調、冰藍輔色、玻璃態卡片 */
+
+:root {
+  --bg-primary: #0f1923;
+  --bg-secondary: #1a2d42;
+  --bg-card: rgba(255, 255, 255, 0.06);
+  --charcoal: #f0f4f8;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #c8a45c;
+  --accent-light: #7ec8e3;
+  --white: #FFFFFF;
+  --border: rgba(255, 255, 255, 0.1);
+
+  --badge-bg: #c8a45c;
+  --badge-text: #0f1923;
+
+  --font-title: 'Noto Sans TC', sans-serif;
+  --font-body: 'Noto Sans TC', sans-serif;
+  --font-accent: 'Inter', sans-serif;
+
+  --cover-overlay: rgba(10, 22, 40, 0.7);
+  --ending-bg: #0a1628;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== BADGE ========== */
+.badge {
+  display: inline-block;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+.badge-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1.3;
+}
+.badge-sub {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* ========== SPLIT LAYOUT ========== */
+.split-left {
+  flex: 1;
+  padding: 40px 60px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg-primary);
+}
+.split-right {
+  width: 50%;
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.split-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ========== TYPOGRAPHY ========== */
+.section-label {
+  font-family: var(--font-accent);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.page-title {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.5;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+}
+.page-title-en {
+  font-family: var(--font-accent);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--accent-light);
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+.page-desc {
+  font-weight: 300;
+  font-size: 14.5px;
+  line-height: 2;
+  color: var(--text-primary);
+  max-width: 520px;
+}
+.page-desc p + p { margin-top: 16px; }
+
+/* ========== INFO GRID ========== */
+.info-grid {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0;
+  margin-top: 32px;
+  border-top: 1px solid var(--border);
+  max-width: 520px;
+}
+.info-grid dt, .info-grid dd {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.info-grid dt { font-weight: 500; color: var(--accent); }
+.info-grid dd { font-weight: 400; color: var(--text-primary); }
+
+/* ========== MEAL TAG ========== */
+.meal-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.meal-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+.meal-tag .label {
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 11px;
+}
+
+/* ========== HOTEL CARD ========== */
+.hotel-info {
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  max-width: 520px;
+  backdrop-filter: blur(10px);
+}
+.hotel-info .hotel-name { font-weight: 500; font-size: 14px; color: var(--charcoal); margin-bottom: 4px; }
+.hotel-info .hotel-tel { font-size: 13px; color: var(--text-muted); font-family: var(--font-accent); letter-spacing: 1px; }
+
+/* ========== ACTIVITY CARDS ========== */
+.activity-list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 520px;
+}
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.activity-name { font-size: 14px; font-weight: 500; color: var(--charcoal); }
+.activity-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* ========== HIGHLIGHT BAR ========== */
+.highlight-bar {
+  margin-top: 28px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: var(--bg-primary);
+  border-radius: 6px;
+  max-width: 520px;
+}
+.highlight-bar .hl-title { font-size: 11px; letter-spacing: 2px; opacity: 0.7; margin-bottom: 6px; }
+.highlight-bar .hl-text { font-size: 14px; font-weight: 500; line-height: 1.8; }
+
+/* ========== NOTE BOX ========== */
+.note-box {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(126, 200, 227, 0.08);
+  border-left: 3px solid var(--accent-light);
+  border-radius: 0 6px 6px 0;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 520px;
+}
+
+/* ========== FLIGHT CODES ========== */
+.flight-block { margin-bottom: 36px; }
+.flight-label { font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 12px; }
+.flight-codes { display: flex; align-items: center; gap: 24px; margin-bottom: 4px; }
+.flight-code { font-family: var(--font-accent); font-size: 48px; font-weight: 500; color: var(--charcoal); letter-spacing: 2px; }
+.flight-dash { font-family: var(--font-accent); font-size: 32px; color: var(--text-muted); }
+.flight-time { display: flex; gap: 24px; }
+.flight-time span { font-family: var(--font-accent); font-size: 18px; color: var(--text-secondary); letter-spacing: 1px; min-width: 80px; }
+
+/* ========== COVER ========== */
+.cover-slide { background: var(--bg-primary); position: relative; }
+.cover-slide .cover-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; position: absolute; top: 0; left: 0; }
+.cover-content { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); }
+.cover-script { font-family: var(--font-accent); font-size: 72px; font-weight: 300; font-style: italic; line-height: 1.2; letter-spacing: 2px; margin-bottom: 16px; }
+.cover-subtitle { font-family: var(--font-title); font-weight: 300; font-size: 18px; letter-spacing: 8px; opacity: 0.9; }
+.cover-date { font-family: var(--font-accent); font-size: 14px; letter-spacing: 4px; opacity: 0.6; margin-top: 24px; }
+.cover-company { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2; font-family: var(--font-body); font-size: 12px; letter-spacing: 6px; color: var(--accent); opacity: 0.6; }
+
+/* ========== QUOTE ========== */
+.quote-slide { background: var(--bg-primary); display: flex; align-items: center; justify-content: center; text-align: center; }
+.quote-text { font-family: var(--font-title); font-weight: 300; font-size: 26px; letter-spacing: 6px; color: var(--charcoal); line-height: 2; }
+.quote-text .en { display: block; font-family: var(--font-accent); font-style: italic; font-size: 18px; letter-spacing: 2px; color: var(--accent); margin-top: 20px; }
+
+/* ========== FULL IMAGE SLIDE ========== */
+.full-img-slide { position: relative; }
+.full-img-slide img { width: 100%; height: 100%; object-fit: cover; }
+.full-img-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px; background: linear-gradient(transparent, rgba(10, 22, 40, 0.85)); color: var(--white); }
+.full-img-overlay .fi-title { font-family: var(--font-title); font-weight: 600; font-size: 28px; margin-bottom: 8px; }
+.full-img-overlay .fi-sub { font-family: var(--font-accent); font-size: 16px; font-style: italic; opacity: 0.8; letter-spacing: 2px; color: var(--accent-light); }
+
+/* ========== OVERVIEW ========== */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; width: 100%; height: 100%; }
+.overview-left { background: var(--bg-primary); padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+.overview-right { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; }
+.overview-right img { width: 100%; height: 100%; object-fit: cover; }
+.day-list { list-style: none; margin-top: 32px; }
+.day-list li { display: flex; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 14px; line-height: 1.6; }
+.day-list .day-num { font-family: var(--font-accent); font-weight: 500; font-size: 16px; color: var(--accent); min-width: 60px; letter-spacing: 1px; }
+.day-list .day-text { color: var(--text-primary); font-weight: 400; }
+
+/* ========== HOTEL OVERVIEW ========== */
+.hotel-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 40px; }
+.hotel-card { background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); backdrop-filter: blur(10px); }
+.hotel-card-img { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: var(--text-muted); background: var(--bg-secondary); }
+.hotel-card-body { padding: 20px; }
+.hotel-card-body .hc-area { font-size: 11px; letter-spacing: 2px; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+.hotel-card-body .hc-name { font-size: 15px; font-weight: 600; color: var(--charcoal); line-height: 1.5; margin-bottom: 8px; }
+.hotel-card-body .hc-nights { font-size: 13px; color: var(--text-muted); }
+.hotel-card-body .hc-tel { font-family: var(--font-accent); font-size: 13px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.5px; }
+
+/* ========== ENDING ========== */
+.end-slide { background: var(--ending-bg); display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); }
+.end-content .end-title { font-family: var(--font-accent); font-size: 56px; font-weight: 300; font-style: italic; letter-spacing: 4px; margin-bottom: 16px; color: var(--accent); }
+.end-content .end-sub { font-family: var(--font-title); font-weight: 300; font-size: 18px; letter-spacing: 6px; opacity: 0.7; }
+.end-content .end-info { margin-top: 48px; font-size: 13px; color: rgba(255,255,255,0.3); letter-spacing: 2px; line-height: 2; }
+
+/* ========== IMAGE PLACEHOLDER ========== */
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-secondary), #0a1628);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.img-placeholder-icon { font-size: 64px; opacity: 0.2; }
+.img-placeholder-text { font-size: 14px; color: var(--text-muted); letter-spacing: 2px; opacity: 0.4; }
+
+/* ========== CONTENT OVERFLOW ========== */
+.split-left { overflow: hidden; }
+.page-desc { overflow: hidden; text-overflow: ellipsis; }
+
+/* ========== UTILITIES ========== */
+.divider { width: 40px; height: 1px; background: var(--accent); margin: 20px 0; }
+.page-num { position: absolute; bottom: 30px; right: 40px; font-family: var(--font-accent); font-size: 14px; color: var(--text-muted); }
+.img-grid-2 { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; height: 100%; }
+.img-grid-2 img { width: 100%; height: 100%; object-fit: cover; }
+
+@media print {
+  .slide { page-break-after: always; }
+  body { background: var(--bg-primary); }
+}

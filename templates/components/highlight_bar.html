@@ -1,0 +1,7 @@
+{# 重點資訊深色條 #}
+{% if day.highlights %}
+<div class="highlight-bar">
+  <div class="hl-title">ALSO VISITING</div>
+  <div class="hl-text">{{ day.highlights | join(' + ') }}</div>
+</div>
+{% endif %}

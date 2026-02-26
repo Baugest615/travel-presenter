@@ -1,0 +1,12 @@
+{# 引言頁 — 極簡居中 #}
+<div class="slide">
+  <div class="slide-inner quote-slide">
+    <div class="quote-text">
+      {{ trip.quote }}
+      {% if trip.quote_en %}
+      <span class="en">{{ trip.quote_en }}</span>
+      {% endif %}
+    </div>
+    <span class="page-num">{{ page_num }}</span>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+{# 活動卡片清單 #}
+{% if day.activities %}
+<div class="activity-list">
+  {% for act in day.activities %}
+  <div class="activity-item">
+    <div class="activity-icon">{{ act.icon or '●' }}</div>
+    <div>
+      <div class="activity-name">{{ act.name }}</div>
+      {% if act.description %}
+      <div class="activity-desc">{{ act.description }}</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

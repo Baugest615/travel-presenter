@@ -1,0 +1,42 @@
+{# 住宿一覽頁 #}
+{% set hotel_colors = ['linear-gradient(135deg,#E8DDD1,#D4C5B0)', 'linear-gradient(135deg,#D1DDE8,#B0C5D4)', 'linear-gradient(135deg,#DDD1E8,#C5B0D4)', 'linear-gradient(135deg,#D1E8DD,#B0D4C5)'] %}
+{% set hotel_icons = ['🏡', '🏔', '🏙', '🌴'] %}
+
+<div class="slide">
+  <div class="slide-inner" style="flex-direction:column;padding:40px 80px;">
+    {% include "components/badge.html" %}
+
+    <div>
+      <div class="section-label">Where we stay</div>
+      <div class="page-title">飯店資訊</div>
+    </div>
+
+    <div class="hotel-grid">
+      {% for hotel in trip.hotels %}
+      <div class="hotel-card">
+        <div class="hotel-card-img" style="background:{{ hotel_colors[loop.index0 % hotel_colors|length] }};font-size:28px;">{{ hotel_icons[loop.index0 % hotel_icons|length] }}</div>
+        <div class="hotel-card-body">
+          <div class="hc-area">{{ hotel.area or '' }}</div>
+          <div class="hc-name">{{ hotel.name }}</div>
+          {% if hotel.nights %}
+          <div class="hc-nights">Day {{ hotel.nights | join(', Day ') }}（共 {{ hotel.nights|length }} 晚）</div>
+          {% endif %}
+          {% if hotel.phone %}
+          <div class="hc-tel">{{ hotel.phone }}</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if trip.notes %}
+    <div class="note-box" style="margin-top:32px;max-width:100%;">
+      {% for note in trip.notes %}
+      {{ note }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <span class="page-num">{{ page_num }}</span>
+  </div>
+</div>

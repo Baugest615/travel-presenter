@@ -1,0 +1,43 @@
+{# 每日行程頁 — 左文右圖分割 #}
+<div class="slide">
+  <div class="slide-inner">
+    <div class="split-left">
+      {% include "components/badge.html" %}
+      <div class="section-label">Day {{ day.day }} destination</div>
+      <div class="page-title">{{ day.title | replace('\n', '<br>') }}</div>
+      {% if day.title_en %}
+      <div class="page-title-en">{{ day.title_en }}</div>
+      {% endif %}
+
+      {% if day.description %}
+      <div class="page-desc">
+        {% for para in day.description.split('\n') %}
+        <p>{{ para }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% include "components/activity_list.html" %}
+      {% include "components/highlight_bar.html" %}
+      {% include "components/meal_tags.html" %}
+      {% include "components/hotel_card.html" %}
+      {% include "components/note_box.html" %}
+    </div>
+    <div class="split-right">
+      {% if day.image_alt %}
+      <div class="img-grid-2">
+        <img src="{{ day.image }}" alt="{{ day.title }}">
+        <img src="{{ day.image_alt }}" alt="{{ day.title }}">
+      </div>
+      {% elif day.image %}
+      <img src="{{ day.image }}" alt="{{ day.title }}">
+      {% else %}
+      <div class="img-placeholder">
+        <span class="img-placeholder-icon">&#x1F3D4;</span>
+        <span class="img-placeholder-text">{{ day.title }}</span>
+      </div>
+      {% endif %}
+    </div>
+    <span class="page-num">{{ page_num }}</span>
+  </div>
+</div>

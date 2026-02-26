@@ -1,0 +1,9 @@
+{# 住宿卡片 #}
+{% if day.hotel %}
+<div class="hotel-info">
+  <div class="hotel-name">{{ day.hotel.name }}</div>
+  {% if day.hotel.phone %}
+  <div class="hotel-tel">{{ day.hotel.phone }}</div>
+  {% endif %}
+</div>
+{% endif %}

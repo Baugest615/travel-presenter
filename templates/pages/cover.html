@@ -1,0 +1,16 @@
+{# 封面頁 — 全幅背景圖 + 半透明遮罩 + 居中標題 #}
+<div class="slide">
+  <div class="slide-inner cover-slide">
+    {% if trip.cover_image %}
+    <img class="cover-img" src="{{ trip.cover_image }}" alt="{{ trip.destination }}">
+    {% endif %}
+    <div class="cover-content">
+      <div class="cover-script">{{ trip.destination }}</div>
+      <div class="cover-subtitle">{{ trip.subtitle or trip.title }}</div>
+      <div class="cover-date">{{ trip.date_range }}</div>
+    </div>
+    {% if trip.company %}
+    <div class="cover-company">{{ trip.company | replace('', ' ') if trip.company|length <= 6 else trip.company }}</div>
+    {% endif %}
+  </div>
+</div>

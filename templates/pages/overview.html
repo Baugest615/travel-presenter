@@ -1,0 +1,26 @@
+{# 行程總覽頁 — 左側清單 + 右側四宮格圖片 #}
+<div class="slide">
+  <div class="slide-inner">
+    <div class="overview-grid">
+      <div class="overview-left">
+        {% include "components/badge.html" %}
+        <div class="section-label">{{ trip.days|length }} Days Journey</div>
+        <div class="page-title">每日行程</div>
+        <ul class="day-list">
+          {% for day in trip.days %}
+          <li>
+            <span class="day-num">Day {{ day.day }}</span>
+            <span class="day-text">{{ day.route or day.title }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="overview-right">
+        {% for img in overview_images[:4] %}
+        <img src="{{ img }}" alt="overview">
+        {% endfor %}
+      </div>
+    </div>
+    <span class="page-num">{{ page_num }}</span>
+  </div>
+</div>

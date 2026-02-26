@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Presenter — 旅遊簡報生成器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/editor.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-left">
+    <h1 class="header-title">Travel Presenter</h1>
+    <span class="header-sub">旅遊簡報生成器</span>
+  </div>
+  <div class="header-right">
+    <span id="session-info" class="session-info" style="display:none"></span>
+    <button id="btn-new" class="btn btn-ghost" style="display:none" onclick="App.reset()">新建</button>
+  </div>
+</header>
+
+<!-- ===== STEP 1: UPLOAD ===== -->
+<section id="upload-screen" class="upload-screen">
+  <div class="upload-box" id="upload-box">
+    <div class="upload-icon">&#x1F4C4;</div>
+    <h2>拖放檔案至此</h2>
+    <p>支援 .docx 和 .json 格式</p>
+    <div class="upload-actions">
+      <label class="btn btn-primary">
+        選擇檔案
+        <input type="file" id="file-input" accept=".docx,.doc,.json" hidden>
+      </label>
+      <button class="btn btn-outline" onclick="App.loadSample()">載入範例資料</button>
+    </div>
+  </div>
+  <div id="upload-status" class="upload-status" style="display:none">
+    <div class="spinner"></div>
+    <span>正在解析檔案...</span>
+  </div>
+  <div id="upload-error" class="upload-error" style="display:none"></div>
+</section>
+
+<!-- ===== STEP 2: EDITOR + PREVIEW ===== -->
+<section id="editor-screen" class="editor-screen" style="display:none">
+  <div class="editor-layout">
+
+    <!-- LEFT: Editor Panel -->
+    <div class="editor-panel" id="editor-panel">
+
+      <!-- 1. 基本資訊 -->
+      <div class="accordion open" data-section="basic">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>基本資訊</span><span class="accordion-arrow">&#x25BC;</span>
+        </div>
+        <div class="accordion-body">
+          <div class="form-group">
+            <label>標題</label>
+            <input type="text" id="f-title" placeholder="2026 北海道">
+          </div>
+          <div class="form-group">
+            <label>副標題</label>
+            <input type="text" id="f-subtitle" placeholder="破冰船・雪上樂園・七日之旅">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>公司名稱</label>
+              <input type="text" id="f-company" placeholder="開麗娛樂">
+            </div>
+            <div class="form-group">
+              <label>目的地</label>
+              <input type="text" id="f-destination" placeholder="北海道">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>日期區間</label>
+            <input type="text" id="f-date_range" placeholder="2026.03.15 — 03.21">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>引言</label>
+              <input type="text" id="f-quote" placeholder="帶你看見北方的光">
+            </div>
+            <div class="form-group">
+              <label>英文引言</label>
+              <input type="text" id="f-quote_en" placeholder="Discover the Northern Light">
+            </div>
+          </div>
+
+          <!-- 主題選擇 -->
+          <div class="form-group">
+            <label>視覺主題</label>
+            <div class="theme-selector" id="theme-selector"></div>
+          </div>
+
+          <!-- 封面圖 -->
+          <div class="form-group">
+            <label>封面圖片</label>
+            <div class="image-upload-row">
+              <img id="cover-thumb" class="img-thumb" style="display:none">
+              <label class="btn btn-sm btn-outline">
+                上傳圖片
+                <input type="file" accept="image/*" hidden onchange="App.uploadImage(this, 'cover', 'f-cover_image', 'cover-thumb')">
+              </label>
+              <input type="text" id="f-cover_image" placeholder="images/cover.jpg" class="flex-1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 航班資訊 -->
+      <div class="accordion" data-section="flights">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>航班資訊</span><span class="accordion-arrow">&#x25B6;</span>
+        </div>
+        <div class="accordion-body" style="display:none">
+          <div id="flights-list"></div>
+          <button class="btn btn-sm btn-outline" onclick="Editor.addFlight()">+ 新增航班</button>
+        </div>
+      </div>
+
+      <!-- 3. 集合資訊 -->
+      <div class="accordion" data-section="meeting">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>集合資訊</span><span class="accordion-arrow">&#x25B6;</span>
+        </div>
+        <div class="accordion-body" style="display:none">
+          <div class="form-row">
+            <div class="form-group"><label>集合時間</label><input type="text" id="f-meeting_time"></div>
+            <div class="form-group"><label>集合地點</label><input type="text" id="f-meeting_location"></div>
+          </div>
+          <div class="form-group"><label>團號</label><input type="text" id="f-group_number"></div>
+        </div>
+      </div>
+
+      <!-- 4. 每日行程 -->
+      <div class="accordion open" data-section="days">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>每日行程</span><span class="accordion-arrow">&#x25BC;</span>
+        </div>
+        <div class="accordion-body">
+          <div class="day-tabs" id="day-tabs"></div>
+          <div id="day-editor"></div>
+          <button class="btn btn-sm btn-outline" onclick="Editor.addDay()" style="margin-top:12px">+ 新增一天</button>
+        </div>
+      </div>
+
+      <!-- 5. 住宿總覽 -->
+      <div class="accordion" data-section="hotels">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>住宿總覽</span><span class="accordion-arrow">&#x25B6;</span>
+        </div>
+        <div class="accordion-body" style="display:none">
+          <div id="hotels-list"></div>
+          <button class="btn btn-sm btn-outline" onclick="Editor.addHotel()">+ 新增飯店</button>
+        </div>
+      </div>
+
+      <!-- 6. 注意事項 -->
+      <div class="accordion" data-section="notes">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>注意事項</span><span class="accordion-arrow">&#x25B6;</span>
+        </div>
+        <div class="accordion-body" style="display:none">
+          <div id="notes-list"></div>
+          <button class="btn btn-sm btn-outline" onclick="Editor.addNote()">+ 新增項目</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Preview Panel -->
+    <div class="preview-panel" id="preview-panel">
+      <div class="preview-toolbar">
+        <button class="btn btn-primary" onclick="App.refreshPreview()">重新整理預覽</button>
+        <button class="btn btn-outline" onclick="App.downloadHTML()">下載 HTML</button>
+        <button class="btn btn-accent" onclick="App.downloadPDF()">下載 PDF</button>
+      </div>
+      <div class="preview-container" id="preview-container">
+        <div class="preview-placeholder" id="preview-placeholder">
+          <p>點擊「重新整理預覽」查看簡報</p>
+        </div>
+        <iframe id="preview-iframe" style="display:none"></iframe>
+      </div>
+      <div id="download-status" class="download-status" style="display:none">
+        <div class="spinner"></div>
+        <span>正在生成 PDF...</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="/static/js/app.js"></script>
+<script src="/static/js/upload.js"></script>
+<script src="/static/js/editor.js"></script>
+<script src="/static/js/preview.js"></script>
+
+</body>
+</html>

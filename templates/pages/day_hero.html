@@ -1,0 +1,55 @@
+{# 每日行程 — 全幅英雄圖（用於重點天數如破冰船）#}
+{# 先渲染全幅圖頁，接著渲染詳細內容的 split 頁 #}
+<div class="slide">
+  <div class="slide-inner full-img-slide">
+    {% if day.image %}
+    <img src="{{ day.image }}" alt="{{ day.title }}" style="width:100%;height:100%;object-fit:cover;">
+    {% endif %}
+    <div class="full-img-overlay">
+      <div class="fi-title">Day {{ day.day }} — {{ day.title | replace('\n', ' ') }}</div>
+      <div class="fi-sub">{{ day.title_en or '' }} &middot; {{ day.date }}</div>
+    </div>
+    {# Hero 頁的 badge 保持絕對定位（浮在圖片上） #}
+    <div class="badge" style="position:absolute;top:40px;left:40px;background:rgba(255,255,255,0.95);">
+      <div class="badge-title" style="color:var(--charcoal);">Day {{ day.day }} — {{ day.date }}</div>
+      <div class="badge-sub" style="color:var(--text-muted);">{{ day.title_en | upper if day.title_en else '' }}</div>
+    </div>
+    <span class="page-num" style="color:rgba(255,255,255,0.6);">{{ page_num }}</span>
+  </div>
+</div>
+{# 詳細內容頁 #}
+<div class="slide">
+  <div class="slide-inner">
+    <div class="split-left">
+      {% set badge_title = 'Day ' ~ day.day ~ ' — ' ~ day.date %}
+      {% set badge_sub = day.title_en | upper if day.title_en else '' %}
+      {% include "components/badge.html" %}
+      <div class="section-label">Day {{ day.day }} destination</div>
+      <div class="page-title">{{ day.title | replace('\n', '<br>') }}</div>
+      {% if day.title_en %}
+      <div class="page-title-en">{{ day.title_en }}</div>
+      {% endif %}
+
+      {% if day.description %}
+      <div class="page-desc">
+        {% for para in day.description.split('\n') %}
+        <p>{{ para }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% include "components/highlight_bar.html" %}
+      {% include "components/note_box.html" %}
+      {% include "components/meal_tags.html" %}
+      {% include "components/hotel_card.html" %}
+    </div>
+    <div class="split-right">
+      {% if day.image_alt %}
+      <img src="{{ day.image_alt }}" alt="{{ day.title }}">
+      {% elif day.image %}
+      <img src="{{ day.image }}" alt="{{ day.title }}">
+      {% endif %}
+    </div>
+    <span class="page-num">{{ page_num + 1 }}</span>
+  </div>
+</div>

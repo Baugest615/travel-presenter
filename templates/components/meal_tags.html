@@ -1,0 +1,8 @@
+{# 餐食標籤列 #}
+{% if day.meals %}
+<div class="meal-row">
+  <span class="meal-tag"><span class="label">早</span> {{ day.meals.breakfast }}</span>
+  <span class="meal-tag"><span class="label">午</span> {{ day.meals.lunch }}</span>
+  <span class="meal-tag"><span class="label">晚</span> {{ day.meals.dinner }}</span>
+</div>
+{% endif %}

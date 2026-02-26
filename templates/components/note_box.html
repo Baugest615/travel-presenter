@@ -1,0 +1,6 @@
+{# 注意事項框 #}
+{% if day.notes %}
+  {% for note in day.notes %}
+  <div class="note-box">{{ note }}</div>
+  {% endfor %}
+{% endif %}

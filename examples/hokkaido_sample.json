@@ -1,0 +1,150 @@
+{
+  "title": "2026 北海道",
+  "subtitle": "破冰船・雪上樂園・七日之旅",
+  "company": "開麗娛樂",
+  "date_range": "2026.03.15 — 03.21",
+  "destination": "北海道",
+  "quote": "在最寒冷的季節，遇見最溫暖的風景",
+  "quote_en": "In the coldest season, we find the warmest scenery.",
+  "theme": "soft-cream",
+  "cover_image": "images/image_9.jpeg",
+
+  "flights": [
+    {
+      "direction": "departure",
+      "airline": "長榮航空 EVA Air",
+      "flight_number": "BR 116",
+      "date": "2026/03/15（日）",
+      "departure_airport": "TPE",
+      "departure_city": "桃園機場",
+      "departure_time": "09:30",
+      "arrival_airport": "CTS",
+      "arrival_city": "新千歲機場",
+      "arrival_time": "14:05"
+    },
+    {
+      "direction": "return",
+      "airline": "長榮航空 EVA Air",
+      "flight_number": "BR 115",
+      "date": "2026/03/21（六）",
+      "departure_airport": "CTS",
+      "departure_city": "新千歲機場",
+      "departure_time": "15:20",
+      "arrival_airport": "TPE",
+      "arrival_city": "桃園機場",
+      "arrival_time": "19:05"
+    }
+  ],
+
+  "meeting_point": {
+    "time": "2026/03/15 07:00",
+    "location": "桃園國際機場 第二航廈"
+  },
+
+  "days": [
+    {
+      "day": 1,
+      "date": "3/15（日）",
+      "title": "森林精靈露台",
+      "title_en": "Ningle Terrace, Furano",
+      "route": "桃園機場 → 新千歲機場 → 富良野",
+      "description": "桃園機場出發，搭乘長榮航空飛往北海道新千歲機場。抵達後接機，前往富良野。\n位於北海道富良野的「森林精靈露台」（ニングルテラス），是由 15 棟木造小屋所構成的森林市集。日語的「ニングル」源自北海道原住民阿伊努族，在他們的語言裡，這是代表住在森林中的小精靈。\n整個市集彷彿精靈的村落一般，入夜後點燈更是夢幻。",
+      "meals": { "breakfast": "敬請自理", "lunch": "機上簡餐", "dinner": "和牛焼肉" },
+      "hotel": { "name": "La Vista Furano Hills Natural Hot Spring", "area": "FURANO", "phone": "+81 167-23-8666" },
+      "image": "images/image_1.jpeg",
+      "layout": "split"
+    },
+    {
+      "day": 2,
+      "date": "3/16（一）",
+      "title": "阿寒冬華美雪\n冰上樂園",
+      "title_en": "Lake Akan Winter Activities",
+      "route": "富良野 → 阿寒",
+      "description": "富良野出發前往阿寒，安排阿寒湖冰上樂園，在銀白世界中盡情玩耍。",
+      "activities": [
+        { "name": "雪上摩托車", "description": "限繞行場地一圈 2,000 公尺，可單人騎乘", "icon": "🏂" },
+        { "name": "雪上四輪越野車", "description": "限繞行場地 300 公尺，在雪上騎車更具樂趣", "icon": "🚗" },
+        { "name": "雪上香蕉船", "description": "限繞行場地 300 公尺，雪中滑行與晃動更刺激", "icon": "🏄" }
+      ],
+      "meals": { "breakfast": "飯店早餐", "lunch": "敬請自理", "dinner": "飯店晚餐" },
+      "hotel": { "name": "Hotel & Spa Resort La Vista Akangawa Kushiro", "area": "AKAN", "phone": "+81 154-67-5566" },
+      "image": "images/image_2.jpeg",
+      "image_alt": "images/image_0.jpeg",
+      "layout": "split"
+    },
+    {
+      "day": 3,
+      "date": "3/17（二）",
+      "title": "破冰船巡航之旅",
+      "title_en": "Drift Ice Cruise Experience",
+      "route": "阿寒 → 網走/紋別 → 阿寒",
+      "description": "盡享北海道冬季魅力！每年約 01 月中旬開始，世界級的巨大河流「黑龍江」的河水冰塊群，從中國與俄羅斯境界流到鄂霍次克海，從天空俯視，一個巨大的白色冰帶，延綿千里。\n搭乘網走觀光破冰船 AURORA 號或紋別觀光破冰船 GARINKO 號，體驗震撼的破冰之旅。",
+      "highlights": ["鄂霍次克海流冰館", "流冰體驗室", "天都山展望臺"],
+      "notes": ["流冰到達網走的日期，根據當地氣象單位的觀測，平均每年約 1 月中～3 月下旬。破冰船若因風雪過大或船隻臨時故障等不可抗力因素無法搭乘時，將適度調整行程。"],
+      "meals": { "breakfast": "飯店早餐", "lunch": "日式膳食", "dinner": "飯店晚餐" },
+      "hotel": { "name": "Hotel & Spa Resort La Vista Akangawa Kushiro", "area": "AKAN", "phone": "+81 154-67-5566" },
+      "image": "images/image_8.jpeg",
+      "image_alt": "images/image_9.jpeg",
+      "layout": "hero"
+    },
+    {
+      "day": 4,
+      "date": "3/18（三）",
+      "title": "美瑛 四季彩之丘\n冰上樂園",
+      "title_en": "Shikisai-no-Oka, Biei",
+      "route": "阿寒 → 美瑛 → 富良野",
+      "description": "阿寒出發前往美瑛，安排四季彩之丘冰上樂園活動，在壯闊的雪原中享受各種雪上活動的樂趣。",
+      "activities": [
+        { "name": "雪上摩托車", "description": "馳騁在美瑛廣闊的雪原上", "icon": "🏂" },
+        { "name": "雪橇", "description": "體驗在雪地中滑行的速度感", "icon": "⛷" },
+        { "name": "雪地泛舟", "description": "在柔軟的粉雪上泛舟漂流", "icon": "🌊" }
+      ],
+      "meals": { "breakfast": "飯店自助早餐", "lunch": "敬請自理", "dinner": "西式晚餐" },
+      "hotel": { "name": "La Vista Furano Hills Natural Hot Spring", "area": "FURANO", "phone": "+81 167-23-8666" },
+      "image": "images/image_3.jpeg",
+      "image_alt": "images/image_5.jpeg",
+      "layout": "split"
+    },
+    {
+      "day": 5,
+      "date": "3/19（四）",
+      "title": "精靈露台・札幌",
+      "title_en": "Ningle Terrace → Sapporo Free Time",
+      "route": "富良野 → 札幌",
+      "description": "上午再次造訪森林精靈露台，在白天不同光線下欣賞這座夢幻森林市集，選購由當地手工藝人製作的獨特紀念品。\n下午前往札幌市區，辦理飯店入住後，享受半日自由活動時間。可自行前往狸小路商店街、時計台、大通公園等知名景點。",
+      "meals": { "breakfast": "飯店早餐", "lunch": "敬請自理", "dinner": "敬請自理" },
+      "hotel": { "name": "SAPPORO HOTEL by GRANBELL", "area": "SAPPORO", "phone": "+81 011-214-0914" },
+      "image": "images/image_10.jpeg",
+      "layout": "split"
+    },
+    {
+      "day": 6,
+      "date": "3/20（五）",
+      "title": "札幌全日自由活動",
+      "title_en": "Sapporo Free Day · Otaru Canal",
+      "route": "札幌（全日自由）",
+      "description": "推薦 — 小樽運河\n沐浴在燭光裡的小樽古老街市，一道如詩如畫的冬季風景線。沿著全長 1,140 米的運河緩緩彎曲，石造倉庫和歷史建築林立，無論從哪個角度看都如畫一般。\n沿著運河慢慢走，周圍有許多利用石造倉庫和古老建築改建的咖啡館和餐廳。",
+      "meals": { "breakfast": "飯店早餐", "lunch": "敬請自理", "dinner": "螃蟹會席料理" },
+      "hotel": { "name": "SAPPORO HOTEL by GRANBELL", "area": "SAPPORO", "phone": "+81 011-214-0914" },
+      "image": "images/image_7.jpeg",
+      "layout": "split"
+    },
+    {
+      "day": 7,
+      "date": "3/21（六）",
+      "title": "三井 OUTLET\n→ 返回台灣",
+      "title_en": "Mitsui Outlet Park → New Chitose → Taipei",
+      "route": "札幌 → 北廣島 → 新千歲 → 桃園",
+      "description": "預計 10:00 抵達札幌北廣島三井 OUTLET PARK，把握最後掃貨時間！\n一年四季，無論刮風下雨，都能盡享購買品牌商品的樂趣。在擁有約 650 個座席的大型美食廣場，海鮮蓋澆飯、十勝名特產豬肉蓋澆飯、北海道和牛肉漢堡包等，北海道特有的美食豐富誘人。",
+      "meals": { "breakfast": "飯店早餐", "lunch": "敬請自理", "dinner": "機上餐食" },
+      "image": "images/image_4.jpeg",
+      "layout": "split"
+    }
+  ],
+
+  "hotels": [
+    { "name": "La Vista Furano Hills Natural Hot Spring", "area": "FURANO", "phone": "+81 167-23-8666", "nights": [1, 4] },
+    { "name": "Hotel & Spa Resort La Vista Akangawa Kushiro", "area": "AKAN", "phone": "+81 154-67-5566", "nights": [2, 3] },
+    { "name": "SAPPORO HOTEL by GRANBELL", "area": "SAPPORO", "phone": "+81 011-214-0914", "nights": [5, 6] }
+  ]
+}
