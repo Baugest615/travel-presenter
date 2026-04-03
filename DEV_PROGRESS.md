@@ -48,6 +48,11 @@
 - [x] Filename sanitization 安全修復（secure_filename）
 - [x] print() → logging 替換
 
+## Night Shift 2026-04-03（最終彙整）
+- **Develop (已 merge)**：Pin dependency versions + secure_filename 安全修復 + print→logging 替換
+- **Develop (待 review)**：
+  - `night-shift/2026-04-03/DOCX-JSON-Parser-韌性測試-Theme-渲染測試` — 48 tests + Python 3.9 相容 bug fix
+
 ## Phase 7：測試基礎建設（已完成）
 - [x] pytest 框架建立（conftest.py + fixtures）
 - [x] DOCX Parser 韌性測試（畸形檔案、缺欄位、邊界條件）— 17 tests
