@@ -43,6 +43,9 @@
 - [x] `start.bat` 一鍵啟動腳本
 - [x] 端到端 Playwright 測試驗證
 
+## Night Shift 2026-04-03
+- Develop (待 review): pin-deps-security-logging (鎖版本 + secure_filename + logging)
+
 ## 技術架構
 
 ```
