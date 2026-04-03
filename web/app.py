@@ -1,10 +1,13 @@
 """Travel Presenter Web — Flask 主應用"""
+import logging
 import sys
 import re
 import json
 import uuid
 import shutil
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 # 確保能 import travel_presenter 套件
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -257,6 +260,7 @@ def get_themes():
 # ── 啟動 ────────────────────────────────────────
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     port = 5500
-    print(f"Travel Presenter Web 已啟動: http://localhost:{port}")
+    logger.info("Travel Presenter Web 已啟動: http://localhost:%d", port)
     app.run(host="127.0.0.1", port=port, debug=False)

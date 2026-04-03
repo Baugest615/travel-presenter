@@ -1,9 +1,12 @@
 """AI 內容美化 — 用 LLM 自動生成英文標題、引言、精煉描述"""
 from __future__ import annotations
 
+import logging
 import os
 import json
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 from ..models import TripData
 
@@ -53,11 +56,11 @@ class AiEnhancer:
     def enhance(self, trip: TripData) -> TripData:
         """用 AI 美化行程內容，回傳修改後的 TripData。"""
         if not self.available():
-            print("  ⚠ 未設定 AI API Key，跳過內容美化")
-            print("    支援：ANTHROPIC_API_KEY 或 OPENAI_API_KEY")
+            logger.warning("未設定 AI API Key，跳過內容美化")
+            logger.warning("  支援：ANTHROPIC_API_KEY 或 OPENAI_API_KEY")
             return trip
 
-        print(f"  正在用 AI 美化內容（{self._provider}）...")
+        logger.info("正在用 AI 美化內容（%s）...", self._provider)
 
         # 建構 prompt
         trip_summary = self._build_summary(trip)
@@ -74,12 +77,12 @@ class AiEnhancer:
 
             if result:
                 trip = self._apply_enhancements(trip, result)
-                print("  ✓ AI 美化完成")
+                logger.info("✓ AI 美化完成")
             else:
-                print("  ⚠ AI 回覆解析失敗，使用原始內容")
+                logger.warning("AI 回覆解析失敗，使用原始內容")
 
         except Exception as e:
-            print(f"  ⚠ AI 美化失敗: {e}")
+            logger.warning("AI 美化失敗: %s", e)
 
         return trip
 
