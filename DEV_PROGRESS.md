@@ -61,6 +61,16 @@
 - [x] 附帶修復：json_loader.py / html_renderer.py 補 `from __future__ import annotations`（Python 3.9 相容）
 - 測試結果：48 passed / 0 failed（0.38s）
 
+## Phase 8：Web App 整合測試（進行中）
+- [x] Flask test_client fixture 建���
+- [x] 11 個 API 路由全覆蓋（27 個測試案例）
+- [x] 測試結果：75 passed / 0 failed（含原有 48 + 新增 27）
+- [ ] 待 review：`night-shift/2026-04-04/Flask-Web-App-整合測試-—-12-個-API-路由覆蓋`
+
+### 發現的問題
+- `json_loader.py` 對無效 JSON 呼叫 `sys.exit(1)` 而非 raise exception，
+  導致 Web 層無法捕獲並回傳 400 — 建議未來改為 `raise ValueError`
+
 ## 技術架構
 
 ```
