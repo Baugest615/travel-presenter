@@ -48,6 +48,12 @@
 - [x] Filename sanitization 安全修復（secure_filename）
 - [x] print() → logging 替換
 
+## Phase 7：測試基礎建設（進行中）
+- [ ] pytest 框架建立（conftest.py + fixtures）
+- [ ] DOCX Parser 韌性測試（畸形檔案、缺欄位、邊界條件）
+- [ ] JSON Parser 韌性測試（缺欄位、CJK 編碼、schema 驗證）
+- [ ] Theme 渲染測試（CSS 注入正確性、HTML 結構、三主題覆蓋）
+
 ## 技術架構
 
 ```
