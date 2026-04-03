@@ -1,8 +1,11 @@
 """Travel Presenter CLI — 旅遊行程簡報生成器"""
 import argparse
+import logging
 import sys
 import io
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 # Windows UTF-8 修正
 if sys.platform == "win32":
@@ -18,7 +21,7 @@ def cmd_generate(args):
 
     input_path = Path(args.input).resolve()
     if not input_path.exists():
-        print(f"錯誤：找不到輸入檔案 {input_path}")
+        logger.error("找不到輸入檔案 %s", input_path)
         sys.exit(1)
 
     # 載入資料
@@ -27,24 +30,24 @@ def cmd_generate(args):
         if suffix == ".json":
             trip = load_from_json(input_path)
         elif suffix in (".docx", ".doc"):
-            print(f"正在解析 DOCX: {input_path.name} ...")
+            logger.info("正在解析 DOCX: %s ...", input_path.name)
             trip = parse_docx(input_path)
-            print(f"  解析完成：{len(trip.days)} 天行程、{len(trip.flights)} 筆航班、{len(trip.hotels)} 間飯店")
+            logger.info("  解析完成：%d 天行程、%d 筆航班、%d 間飯店", len(trip.days), len(trip.flights), len(trip.hotels))
         else:
-            print(f"不支援的檔案格式: {suffix}")
+            logger.error("不支援的檔案格式: %s", suffix)
             sys.exit(1)
     except SystemExit:
         raise
     except ValueError as e:
-        print(f"錯誤：{e}")
+        logger.error("錯誤：%s", e)
         sys.exit(1)
     except Exception as e:
-        print(f"錯誤：載入檔案失敗 — {e}")
+        logger.error("載入檔案失敗 — %s", e)
         sys.exit(1)
 
     if not trip.days:
-        print("警告：未解析到任何行程資料，產生的簡報可能為空")
-        print("  提示：可先用 parse 指令檢查解析結果")
+        logger.warning("未解析到任何行程資料，產生的簡報可能為空")
+        logger.warning("  提示：可先用 parse 指令檢查解析結果")
 
     # 覆寫主題
     if args.theme:
@@ -88,13 +91,13 @@ def cmd_generate(args):
 
     if args.html_only:
         output_path.write_text(html, encoding="utf-8")
-        print(f"✓ HTML 已輸出: {output_path}")
+        logger.info("✓ HTML 已輸出: %s", output_path)
     else:
         # 用圖片所在目錄作為 base_dir（解決相對路徑）
         base_dir = args.images_dir or str(input_path.parent)
         pdf = PdfRenderer()
         pdf.render(html, str(output_path), base_dir=base_dir)
-        print(f"✓ PDF 已輸出: {output_path}")
+        logger.info("✓ PDF 已輸出: %s", output_path)
 
 
 def cmd_parse(args):
@@ -104,23 +107,23 @@ def cmd_parse(args):
 
     input_path = Path(args.input).resolve()
     if not input_path.exists():
-        print(f"錯誤：找不到輸入檔案 {input_path}")
+        logger.error("找不到輸入檔案 %s", input_path)
         sys.exit(1)
 
     if input_path.suffix.lower() not in ('.docx', '.doc'):
-        print(f"錯誤：parse 指令僅支援 .docx 檔案，收到: {input_path.suffix}")
+        logger.error("parse 指令僅支援 .docx 檔案，收到: %s", input_path.suffix)
         sys.exit(1)
 
-    print(f"正在解析: {input_path.name} ...")
+    logger.info("正在解析: %s ...", input_path.name)
     try:
         trip = parse_docx(input_path)
     except ValueError as e:
-        print(f"錯誤：{e}")
+        logger.error("錯誤：%s", e)
         sys.exit(1)
     except Exception as e:
-        print(f"錯誤：DOCX 解析失敗 — {e}")
+        logger.error("DOCX 解析失敗 — %s", e)
         sys.exit(1)
-    print(f"  解析完成：{len(trip.days)} 天行程、{len(trip.flights)} 筆航班、{len(trip.hotels)} 間飯店")
+    logger.info("  解析完成：%d 天行程、%d 筆航班、%d 間飯店", len(trip.days), len(trip.flights), len(trip.hotels))
 
     output_path = Path(args.output).resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -130,8 +133,8 @@ def cmd_parse(args):
         json.dumps(data, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    print(f"✓ JSON 已輸出: {output_path}")
-    print("  你可以手動編輯此 JSON 後再用 generate 指令生成簡報。")
+    logger.info("✓ JSON 已輸出: %s", output_path)
+    logger.info("  你可以手動編輯此 JSON 後再用 generate 指令生成簡報。")
 
 
 def cmd_themes(args):
@@ -139,16 +142,18 @@ def cmd_themes(args):
     from .themes.registry import list_themes
 
     themes = list_themes()
-    print("\n可用主題：")
-    print("-" * 50)
+    logger.info("\n可用主題：")
+    logger.info("-" * 50)
     for t in themes:
         status = "✓" if t["available"] else "✗"
-        print(f"  {status} {t['id']:<15} {t['name']}")
-        print(f"    {t['description']}")
-    print()
+        logger.info("  %s %-15s %s", status, t['id'], t['name'])
+        logger.info("    %s", t['description'])
+    logger.info("")
 
 
 def main():
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+
     parser = argparse.ArgumentParser(
         prog="travel-presenter",
         description="旅遊行程簡報生成器 — 從 JSON/DOCX 生成高品質 PDF 簡報",

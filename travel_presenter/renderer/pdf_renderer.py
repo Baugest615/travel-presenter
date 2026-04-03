@@ -1,7 +1,10 @@
 """Playwright PDF 渲染器 — 將 HTML 轉為 PDF"""
+import logging
 import sys
 import tempfile
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 try:
     from playwright.sync_api import sync_playwright
@@ -17,10 +20,10 @@ class PdfRenderer:
                base_dir: str | None = None) -> str:
         """HTML string → PDF file"""
         if sync_playwright is None:
-            print("錯誤：PDF 渲染需要 playwright 套件")
-            print("  安裝方式：")
-            print("    pip install playwright")
-            print("    playwright install chromium")
+            logger.error("PDF 渲染需要 playwright 套件")
+            logger.error("  安裝方式：")
+            logger.error("    pip install playwright")
+            logger.error("    playwright install chromium")
             sys.exit(1)
 
         temp_html = None
@@ -29,8 +32,8 @@ class PdfRenderer:
                 try:
                     browser = p.chromium.launch(headless=True)
                 except Exception as e:
-                    print(f"錯誤：無法啟動瀏覽器 — {e}")
-                    print("  請確認已安裝 Chromium：playwright install chromium")
+                    logger.error("無法啟動瀏覽器 — %s", e)
+                    logger.error("  請確認已安裝 Chromium：playwright install chromium")
                     sys.exit(1)
 
                 page = browser.new_page(

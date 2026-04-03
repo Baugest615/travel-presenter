@@ -1,12 +1,15 @@
 """自動圖片抓取 — 從 Unsplash 取得免費高品質旅遊照片"""
 from __future__ import annotations
 
+import logging
 import os
 import re
 import hashlib
 import json
 import time
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 from typing import Optional
 from urllib.request import urlopen, Request
 from urllib.parse import quote_plus
@@ -78,11 +81,11 @@ class ImageFetcher:
         會修改 trip 物件的 cover_image、days[].image 等欄位。
         """
         if not self.available():
-            print("  ⚠ 未設定 UNSPLASH_ACCESS_KEY，跳過自動抓圖")
-            print("    設定方式：set UNSPLASH_ACCESS_KEY=你的金鑰")
+            logger.warning("未設定 UNSPLASH_ACCESS_KEY，跳過自動抓圖")
+            logger.warning("  設定方式：set UNSPLASH_ACCESS_KEY=你的金鑰")
             return trip
 
-        print(f"  正在從 Unsplash 抓取圖片（快取目錄: {self.cache_dir}）...")
+        logger.info("正在從 Unsplash 抓取圖片（快取目錄: %s）...", self.cache_dir)
 
         # 1. 封面圖
         if not trip.cover_image or force:
@@ -90,7 +93,7 @@ class ImageFetcher:
             cover_path = self._fetch_image(cover_query, tag="cover")
             if cover_path:
                 trip.cover_image = cover_path
-                print(f"    ✓ 封面: {cover_query}")
+                logger.info("  ✓ 封面: %s", cover_query)
 
         # 2. 每日行程圖
         for day in trip.days:
@@ -102,9 +105,9 @@ class ImageFetcher:
             img_path = self._fetch_image(query, tag=tag)
             if img_path:
                 day.image = img_path
-                print(f"    ✓ Day {day.day}: {query}")
+                logger.info("  ✓ Day %d: %s", day.day, query)
             else:
-                print(f"    ✗ Day {day.day}: 找不到「{query}」的圖片")
+                logger.warning("  ✗ Day %d: 找不到「%s」的圖片", day.day, query)
 
             # 避免觸及 API 速率限制
             time.sleep(0.5)
@@ -112,7 +115,7 @@ class ImageFetcher:
         # 3. 航班頁圖（用目的地搜尋）
         # 不需要額外處理，renderer 會自動從 day images 取
 
-        print(f"  抓圖完成，共 {self._count_images(trip)} 張")
+        logger.info("抓圖完成，共 %d 張", self._count_images(trip))
         return trip
 
     # ── 搜尋與下載 ────────────────────────────────

@@ -43,8 +43,10 @@
 - [x] `start.bat` 一鍵啟動腳本
 - [x] 端到端 Playwright 測試驗證
 
-## Night Shift 2026-04-03
-- Develop (待 review): pin-deps-security-logging (鎖版本 + secure_filename + logging)
+## Phase 6：維護與安全（已完成）
+- [x] Pin dependency versions（requirements.txt 鎖版本）
+- [x] Filename sanitization 安全修復（secure_filename）
+- [x] print() → logging 替換
 
 ## 技術架構
 
