@@ -11,6 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from flask import Flask, request, jsonify, send_file, send_from_directory, render_template
+from werkzeug.utils import secure_filename
 from travel_presenter.models import TripData
 from travel_presenter.parser import load_from_json, parse_docx
 from travel_presenter.renderer.html_renderer import HtmlRenderer
@@ -48,7 +49,7 @@ def upload_file():
     (session_dir / "images").mkdir(exist_ok=True)
 
     # 儲存原始檔案
-    safe_name = f.filename.replace("/", "_").replace("\\", "_")
+    safe_name = secure_filename(f.filename) or "upload"
     save_path = session_dir / safe_name
     f.save(str(save_path))
 
