@@ -1,4 +1,5 @@
 """Jinja2 HTML 渲染引擎 — 將 TripData 轉為完整的 HTML 簡報"""
+from __future__ import annotations
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 from ..models import TripData
