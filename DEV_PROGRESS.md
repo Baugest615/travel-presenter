@@ -48,6 +48,9 @@
 - [x] Filename sanitization 安全修復（secure_filename）
 - [x] print() → logging 替換
 
+## Night Shift 2026-04-04
+- Develop (待 review): `night-shift/2026-04-04/Flask-Web-App-整合測試-…` — 27 個整合測試（11 個 API 路由全覆蓋）
+
 ## Night Shift 2026-04-03（最終彙整）
 - **Develop (已 merge)**：Pin dependency versions + secure_filename 安全修復 + print→logging 替換
 - **Develop (待 review)**：
