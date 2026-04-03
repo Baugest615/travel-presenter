@@ -43,10 +43,10 @@
 - [x] `start.bat` 一鍵啟動腳本
 - [x] 端到端 Playwright 測試驗證
 
-## Phase 6：維護與安全（進行中）
-- [ ] Pin dependency versions（requirements.txt 鎖版本）
-- [ ] Filename sanitization 安全修復（secure_filename）
-- [ ] print() → logging 替換
+## Phase 6：維護與安全（已完成）
+- [x] Pin dependency versions（requirements.txt 鎖版本）
+- [x] Filename sanitization 安全修復（secure_filename）
+- [x] print() → logging 替換
 
 ## 技術架構
 
