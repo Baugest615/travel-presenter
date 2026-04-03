@@ -48,11 +48,13 @@
 - [x] Filename sanitization 安全修復（secure_filename）
 - [x] print() → logging 替換
 
-## Phase 7：測試基礎建設（進行中）
-- [ ] pytest 框架建立（conftest.py + fixtures）
-- [ ] DOCX Parser 韌性測試（畸形檔案、缺欄位、邊界條件）
-- [ ] JSON Parser 韌性測試（缺欄位、CJK 編碼、schema 驗證）
-- [ ] Theme 渲染測試（CSS 注入正確性、HTML 結構、三主題覆蓋）
+## Phase 7：測試基礎建設（已完成）
+- [x] pytest 框架建立（conftest.py + fixtures）
+- [x] DOCX Parser 韌性測試（畸形檔案、缺欄位、邊界條件）— 17 tests
+- [x] JSON Parser 韌性測試（缺欄位、CJK 編碼、schema 驗證）— 9 tests
+- [x] Theme 渲染測試（CSS 注入正確性、HTML 結構、三主題覆蓋）— 22 tests
+- [x] 附帶修復：json_loader.py / html_renderer.py 補 `from __future__ import annotations`（Python 3.9 相容）
+- 測試結果：48 passed / 0 failed（0.38s）
 
 ## 技術架構
 
