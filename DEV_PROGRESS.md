@@ -1,5 +1,10 @@
 # Travel Presenter — 開發進度
 
+## 目前狀態
+
+### Night Shift 2026-04-06
+- develop: `night-shift/2026-04-06/Phase-7-8-收尾-DEV_PROGRESS-同步` — DEV_PROGRESS 同步至真實狀態，75 tests ✅
+
 ## Phase 1：MVP 核心（已完成）
 - [x] 資料模型 `TripData`（Pydantic v2）
 - [x] JSON 載入器 `json_loader.py`
