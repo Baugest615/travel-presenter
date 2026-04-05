@@ -48,14 +48,6 @@
 - [x] Filename sanitization 安全修復（secure_filename）
 - [x] print() → logging 替換
 
-## Night Shift 2026-04-04
-- Develop (待 review): `night-shift/2026-04-04/Flask-Web-App-整合測試-…` — 27 個整合測試（11 個 API 路由全覆蓋）
-
-## Night Shift 2026-04-03（最終彙整）
-- **Develop (已 merge)**：Pin dependency versions + secure_filename 安全修復 + print→logging 替換
-- **Develop (待 review)**：
-  - `night-shift/2026-04-03/DOCX-JSON-Parser-韌性測試-Theme-渲染測試` — 48 tests + Python 3.9 相容 bug fix
-
 ## Phase 7：測試基礎建設（已完成）
 - [x] pytest 框架建立（conftest.py + fixtures）
 - [x] DOCX Parser 韌性測試（畸形檔案、缺欄位、邊界條件）— 17 tests
@@ -64,15 +56,19 @@
 - [x] 附帶修復：json_loader.py / html_renderer.py 補 `from __future__ import annotations`（Python 3.9 相容）
 - 測試結果：48 passed / 0 failed（0.38s）
 
-## Phase 8：Web App 整合測試（進行中）
-- [x] Flask test_client fixture 建���
+## Phase 8：Web App 整合測試（已完成）
+- [x] Flask test_client fixture 建立
 - [x] 11 個 API 路由全覆蓋（27 個測試案例）
-- [x] 測試結果：75 passed / 0 failed（含原有 48 + 新增 27）
-- [ ] 待 review：`night-shift/2026-04-04/Flask-Web-App-整合測試-—-12-個-API-路由覆蓋`
+- [x] 測試結果：75 passed / 0 failed（含原有 48 + 新增 27，0.56s）
 
-### 發現的問題
+### 已知問題（待未來處理）
 - `json_loader.py` 對無效 JSON 呼叫 `sys.exit(1)` 而非 raise exception，
   導致 Web 層無法捕獲並回傳 400 — 建議未來改為 `raise ValueError`
+
+## Night Shift 紀錄
+- **2026-04-03**：Pin deps + secure_filename + logging（已 merge）；DOCX/JSON/Theme 48 tests（已 merge）
+- **2026-04-04**：Flask 整合測試 27 tests（已 merge）
+- **2026-04-06**：Phase 7/8 收尾 — DEV_PROGRESS 同步、已 merge branch 清理建議
 
 ## 技術架構
 
